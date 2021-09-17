@@ -1,7 +1,7 @@
 import GhostContentAPI from '@tryghost/content-api'
 
 const api = new GhostContentAPI({
-  url: 'https://www.cambodiafoodreview.com',
+  url: 'http://api.cambodiafoodreview.com',
   key: '143e7011a622428d5f61f933de',
   version: 'v3',
 })
