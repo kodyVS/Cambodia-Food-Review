@@ -68,6 +68,28 @@ export default {
     const searchName = params.search
     return { posts, searchName }
   },
+  head() {
+    return {
+      title: this.searchName,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Read about all the ${this.searchName} dishes we have experienced. Find your next meal or read about our crazy adventures in Cambodia `,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.searchName,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: `Read about all the ${this.searchName} dishes we have experienced. Find your next meal or read about our crazy adventures in Cambodia `,
+        },
+      ],
+    }
+  },
   data() {
     return {
       loading: false,

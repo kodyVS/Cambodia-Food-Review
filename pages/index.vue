@@ -27,7 +27,28 @@ export default {
     const posts = await getNewPosts(1)
     return { posts }
   },
-
+  head() {
+    return {
+      title: 'Home Page',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Welcome to Cambodia Food Review! Here we write articles for finding the best places to chow down in Cambodia with our easy to navigate platform. `,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: 'Home Page',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: `Welcome to Cambodia Food Review! Here we write articles for finding the best places to chow down in Cambodia with our easy to navigate platform.`,
+        },
+      ],
+    }
+  },
   data() {
     return {
       posts: {},

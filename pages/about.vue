@@ -12,11 +12,34 @@ export default {
     console.log(page)
     return { page }
   },
-  //   data() {
-  //     return {
-  //       page: '',
-  //     }
-  //   },
+  head() {
+    return {
+      title: this.page.meta_title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.page.meta_description,
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content:
+            'https://res-5.cloudinary.com/www-cambodiafoodreviews-com/image/upload/q_auto/v1/blog-images/175758975_10159313124929820_2792132313351479549_n.jpg',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.page.meta_title,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.page.meta_description,
+        },
+      ],
+    }
+  },
 }
 </script>
 <style lang="scss">

@@ -1,8 +1,15 @@
 <template>
   <div class="article full-width">
-    <div class="article__date">{{ post.feature_image_caption }}</div>
-    <h1 class="mt-10 article__title">{{ post.title }}</h1>
+    <h1 class="mt-10 article__title">
+      {{ post.title }}
+    </h1>
     <div class="article__date">Posted {{ formattedDate }}</div>
+    <div class="article__date">
+      Location:
+      <a :href="post.codeinjection_head" target="blank">{{
+        post.codeinjection_head
+      }}</a>
+    </div>
     <BaseImage
       :image="post.feature_image"
       :img-class="'article__feature-image'"
@@ -26,17 +33,60 @@
 import SideBar from '../../components/article/sidebar.vue'
 import { getSinglePost } from '~/api/posts'
 export default {
+  components: {
+    SideBar,
+  },
   async asyncData({ params }) {
     const post = await getSinglePost(params.slug)
     console.log(post)
     return { post }
   },
-  components: {
-    SideBar,
+  head() {
+    return {
+      title: this.post.meta_title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post.meta_description,
+        },
+        // "og_image": null,
+        // "og_title": null,
+        // "og_description": null,
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.post.feature_image,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.post.meta_title,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.post.meta_description,
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'article',
+        },
+      ],
+    }
   },
   computed: {
     formattedDate() {
       return this.$moment(this.post.updated_at).format('dddd, MMMM Do YYYY')
+    },
+    locationLink() {
+      if (this.post.codeinjection_head) {
+        const location = encodeURIComponent(this.post.codeinjection_head.trim())
+        return `https://www.google.com/maps/search/?api=1&query=${location}`
+      } else {
+        return '#'
+      }
     },
   },
 }
@@ -104,7 +154,7 @@ export default {
     }
     &__content {
       grid-column: 2 / 12;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     &__sidebar {
       grid-column: 3 / 12;
@@ -129,7 +179,7 @@ export default {
     }
     &__content {
       grid-column: 2 / 12;
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
     &__sidebar {
       grid-column: 1 / 13;

@@ -98,7 +98,6 @@ export default {
   background-size: cover;
   background-position: center;
   height: 90vh;
-  width: 90vh;
   overflow: hidden;
   padding: 5rem;
   display: flex;
@@ -129,7 +128,6 @@ export default {
   .contact-us {
     background-color: white;
     height: 90vh;
-    width: 90vh;
     overflow: hidden;
     padding: 1rem;
     display: flex;

@@ -39,17 +39,41 @@ import { getTagCount } from '~/api/posts'
 export default {
   async asyncData({ params }) {
     const cards = await getTagCount(params.categories)
-    return { cards }
+    const title = params.categories
+    return { cards, title }
   },
-
   data() {
     return {
       search: '',
       search1: '',
       price: ['$', '$$', '$$$'],
       test: 'hello',
+      description: `Search here for the different ${this.title} we have experienced. Find the location of your next food adventure.`,
     }
   },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.title,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.description,
+        },
+      ],
+    }
+  },
+
   computed: {
     filteredList() {
       return this.cards.filter((card) => {

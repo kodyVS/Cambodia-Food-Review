@@ -6,8 +6,8 @@ export default {
     port: '3001', // default: localhost
   },
   head: {
-    titleTemplate: '%s - cambodia-food-review',
-    title: 'cambodia-food-review',
+    titleTemplate: '%s - Cambodia Food Review',
+    title: 'Home',
     htmlAttrs: {
       lang: 'en',
     },
@@ -16,6 +16,11 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: '',
+      },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],

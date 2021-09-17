@@ -35,14 +35,14 @@ export default {
           image:
             'https://res.cloudinary.com/www-cambodiafoodreviews-com/image/upload/v1630559206/Cambodia%20food%20review/Cuisines/Korean_bsdu1s.jpg',
           title: 'Korean',
-          link: 'search/Korean',
+          link: '/search/Korean',
           position: '',
         },
         {
           image:
             'https://res.cloudinary.com/www-cambodiafoodreviews-com/image/upload/v1631688962/Cambodia%20food%20review/Cuisines/Japan_jgu4d2.jpg',
           title: 'Japanese',
-          link: '/search/search/Japanese',
+          link: '/search/Japanese',
           position: '',
         },
         {
