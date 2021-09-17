@@ -1,4 +1,4 @@
-FROM node:16-alpine3.11
+FROM node:14-alpine3.13
 
 RUN mkdir -p /var/www/dockerize-nuxt/nuxt-app
 WORKDIR /var/www/dockerize-nuxt/nuxt-app

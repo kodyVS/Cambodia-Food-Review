@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@nuxtjs/google-adsense": "^1.4.0",
-    "@tryghost/content-api": "^1.5.12",
-    "core-js": "^3.16.4",
+    "@tryghost/content-api": "^1.5.13",
+    "core-js": "^3.17.3",
     "nuxt": "^2.15.7",
     "vue-gtag": "^1.16.1",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.14.7",
+    "@babel/eslint-parser": "^7.15.4",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/moment": "^1.6.1",
@@ -29,7 +29,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.17.0",
-    "prettier": "^2.3.2",
+    "prettier": "^2.4.1",
     "sass-loader": "^10.2.0"
   }
 }
