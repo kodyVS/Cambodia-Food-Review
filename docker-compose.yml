@@ -5,17 +5,22 @@ services:
     build: ./Cambodia-Food-Review
     container_name: nuxt-app
     restart: always
+    ports:
+      - '3000:3000'
     command: 'npm run start'
     networks:
       - nuxt-network
   nginx:
-    image: nginx:1.21.3-alpine
     container_name: production_nginx
+    image: nginx:1.21.3-alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
     ports:
-      - 80:3001
-      - 443:443
+      - 80:80
     networks:
       - nuxt-network
+    depends_on:
+      - nuxt-app
 networks:
   nuxt-network:
     driver: bridge
