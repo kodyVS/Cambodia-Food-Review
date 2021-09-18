@@ -9,7 +9,6 @@ import { getPage } from '~/api/posts'
 export default {
   async asyncData() {
     const page = await getPage('about')
-    console.log(page)
     return { page }
   },
   head() {

@@ -6,14 +6,26 @@ services:
     container_name: nuxt-app
     restart: always
     ports:
-      - '3000:3000'
+      - '3001:3001'
     command: 'npm run start'
   nginx:
-    container_name: production_nginx
-    image: nginx:1.21.3-alpine
+    image: nginx:1.15-alpine
+    restart: unless-stopped
     volumes:
-      - .ls/nginx:/etc/nginx/conf.d
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - nuxt-app
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+root@CambodiaFoodReviewFE:~/CFR#

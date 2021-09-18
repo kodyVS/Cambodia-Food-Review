@@ -10,6 +10,19 @@
         post.codeinjection_head
       }}</a>
     </div>
+    <div class="article__social">
+      <p>Share:</p>
+      <a
+        class="article__link"
+        :href="
+          'https://www.facebook.com/sharer/sharer.php?u=https://www.cambodiafoodreview.com/' +
+          post.slug
+        "
+        target="_blank"
+      >
+        <v-icon size="35" color="blue">mdi-facebook</v-icon>
+      </a>
+    </div>
     <BaseImage
       :image="post.feature_image"
       :img-class="'article__feature-image'"
@@ -38,7 +51,6 @@ export default {
   },
   async asyncData({ params }) {
     const post = await getSinglePost(params.slug)
-    console.log(post)
     return { post }
   },
   head() {
@@ -118,8 +130,26 @@ export default {
     text-align: center;
     font-weight: 600;
   }
+  &__link {
+    text-decoration: none;
+    border: none;
+  }
+  &__social {
+    display: flex;
+    justify-content: right;
+    color: rgb(80, 80, 80);
+    margin-right: 2rem;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 3px;
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+      margin-right: 0.3rem;
+    }
+  }
   &__feature-image {
-    margin-top: 5rem;
     height: 60rem;
     background-size: 100%;
     margin-bottom: 2rem;
@@ -146,7 +176,6 @@ export default {
   )} {
   .article {
     &__feature-image {
-      margin-top: 5rem;
       height: 40rem;
       background-size: 100%;
       margin-bottom: 2rem;
@@ -155,6 +184,18 @@ export default {
     &__content {
       grid-column: 2 / 12;
       font-size: 1.2rem;
+    }
+    &__social {
+      margin-right: 2rem;
+      align-items: center;
+      margin-top: 3rem;
+      margin-bottom: 3px;
+      p {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 0;
+        margin-right: 0.3rem;
+      }
     }
     &__sidebar {
       grid-column: 3 / 12;
@@ -168,7 +209,6 @@ export default {
   )} {
   .article {
     &__feature-image {
-      margin-top: 5rem;
       height: 25rem;
       background-size: 100%;
       margin-bottom: 2rem;

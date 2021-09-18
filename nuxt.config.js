@@ -46,7 +46,25 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    [
+      'nuxt-mail',
+      {
+        message: {
+          to: 'kodyvansloten1@gmail.com',
+        },
+        smtp: {
+          host: 'smtp-mail.outlook.com',
+          port: 587,
+          auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD,
+          },
+        },
+      },
+    ],
+  ],
   //   [
   //     '@nuxtjs/google-adsense',
   //     {

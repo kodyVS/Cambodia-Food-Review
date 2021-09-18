@@ -1,6 +1,9 @@
 <template>
   <v-dialog v-model="dialog">
     <div class="contact-us">
+      <v-alert v-model="alert" type="success" dense class="contact-us__alert">
+        success!
+      </v-alert>
       <v-icon
         large
         class="contact-us__icon"
@@ -12,14 +15,15 @@
         <v-col cols="12" md="6" order="2">
           <v-form
             ref="form"
-            class="contact-us__form"
             v-model="valid"
+            class="contact-us__form"
             lazy-validation
           >
             <v-text-field
               v-model="name"
               :rules="nameRules"
               label="Name"
+              type="text"
               required
             ></v-text-field>
 
@@ -27,10 +31,12 @@
               v-model="email"
               :rules="emailRules"
               label="E-mail"
+              type="email"
               required
             ></v-text-field>
 
-            <v-textarea label="How can we connect?" no-resize> </v-textarea>
+            <v-textarea v-model="message" label="How can we connect?" no-resize>
+            </v-textarea>
             <v-btn
               :disabled="!valid"
               color="orange white--text"
@@ -39,6 +45,11 @@
             >
               Send
             </v-btn>
+            <v-progress-circular
+              v-if="loading"
+              indeterminate
+              color="primary"
+            ></v-progress-circular>
           </v-form>
         </v-col>
         <v-col cols="12" md="6" order="1" order-md="3">
@@ -52,9 +63,14 @@
               Want us to come review your restaurant? <br />Send us and email or
               reach us on our social media
             </h2>
-            <v-icon @click="$router.push('/')" x-large color="blue"
-              >mdi-facebook</v-icon
+            <a
+              href="https://www.facebook.com/CambodiaFoodReview"
+              class="contact-us__facebook"
+              target="_blank"
+              text
             >
+              <v-icon size="50" color="blue">mdi-facebook</v-icon>
+            </a>
           </v-row>
         </v-col>
       </v-row>
@@ -69,8 +85,11 @@ export default {
       dialog: false,
       name: '',
       valid: '',
+      message: '',
       nameRules: [(v) => !!v || 'Name is required'],
       email: '',
+      loading: false,
+      alert: false,
       emailRules: [
         (v) => !!v || 'E-mail is required',
         (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -83,8 +102,27 @@ export default {
     },
   },
   methods: {
-    validate() {
-      this.$refs.form.validate()
+    async validate() {
+      try {
+        if (this.$refs.form.validate()) {
+          this.loading = true
+          await this.$mail.send({
+            from: 'kodyvansloten@hotmail.com',
+            subject: 'Contact form message',
+            text: this.name + ' ' + this.email + ' ' + this.message,
+          })
+          this.loading = false
+          // this.dialog = !this.dialog
+          this.alert = true
+          setTimeout(() => {
+            this.alert = false
+          }, 3000)
+        } else {
+          alert('nope')
+        }
+      } catch (err) {
+        this.loading = false
+      }
     },
   },
 }
@@ -103,9 +141,18 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
+  &__alert {
+    position: absolute !important;
+    display: block;
+    bottom: 0px;
+    right: 5px;
+  }
   &__form {
   }
-
+  &__facebook {
+    text-decoration: none;
+    border: none;
+  }
   &__icon {
     position: absolute !important;
     top: 15px;
