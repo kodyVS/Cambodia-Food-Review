@@ -20,6 +20,7 @@
             lazy-validation
           >
             <v-text-field
+              disabled
               v-model="name"
               :rules="nameRules"
               label="Name"
@@ -28,6 +29,7 @@
             ></v-text-field>
 
             <v-text-field
+              disabled
               v-model="email"
               :rules="emailRules"
               label="E-mail"
@@ -38,7 +40,7 @@
             <v-textarea v-model="message" label="How can we connect?" no-resize>
             </v-textarea>
             <v-btn
-              :disabled="!valid"
+              disabled
               color="orange white--text"
               class="mr-4"
               @click="validate"
@@ -102,15 +104,15 @@ export default {
     },
   },
   methods: {
-    async validate() {
+    validate() {
       try {
         if (this.$refs.form.validate()) {
-          this.loading = true
-          await this.$mail.send({
-            from: 'kodyvansloten@hotmail.com',
-            subject: 'Contact form message',
-            text: this.name + ' ' + this.email + ' ' + this.message,
-          })
+          // this.loading = true
+          // await this.$mail.send({
+          //   from: 'kodyvansloten@hotmail.com',
+          //   subject: 'Contact form message',
+          //   text: this.name + ' ' + this.email + ' ' + this.message,
+          // })
           this.loading = false
           // this.dialog = !this.dialog
           this.alert = true
