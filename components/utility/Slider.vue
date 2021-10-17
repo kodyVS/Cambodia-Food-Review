@@ -1,6 +1,8 @@
 <template>
   <div class="sliders">
-    <h3 class="mt-3">{{ title }}</h3>
+    <h3 class="mt-7" style="color: #f46f30">
+      <v-icon left :color="iconColor">{{ icon }}</v-icon> {{ title }}
+    </h3>
     <v-slide-group
       class="pa-4"
       active-class="success"
@@ -41,7 +43,7 @@
 </template>
 <script>
 export default {
-  props: ['sliders', 'title'],
+  props: ['sliders', 'title', 'icon', 'iconColor'],
 }
 </script>
 <style lang="scss">

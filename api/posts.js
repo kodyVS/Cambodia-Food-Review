@@ -18,6 +18,25 @@ export async function getPosts(filter) {
       console.log(err)
     })
 }
+
+export async function getPostsFiltered(filter) {
+  let filterQuery = []
+  filterQuery = filter.map((filters) => {
+    return `tag:${filters}`
+  })
+  filterQuery = filterQuery.join('+')
+  console.log(filterQuery)
+  return await api.posts
+    .browse({
+      limit: 'all',
+      include: 'tags, authors',
+      filter: `tag:${filterQuery}`,
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 export async function getNewPosts(num) {
   return await api.posts
     .browse({

@@ -1,5 +1,10 @@
 <template>
-  <Slider :sliders="cuisines" :title="'Cuisines'"></Slider>
+  <Slider
+    :sliders="cuisines"
+    :title="'Cuisines'"
+    :icon="'mdi-flag'"
+    :icon-color="'#f46f30'"
+  ></Slider>
 </template>
 <script>
 import Slider from '../utility/Slider'

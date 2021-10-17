@@ -77,9 +77,9 @@ export default {
   },
   computed: {
     tagsDisplayed: function () {
-      const tags = [...this.post.tags]
+      let tags = [...this.post.tags]
       if (tags.length > 5) {
-        tags.splice(0, 5)
+        tags = tags.slice(0, 5)
         tags.push({ name: '...' })
       }
       return tags
