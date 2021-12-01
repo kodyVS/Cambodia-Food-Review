@@ -78,16 +78,20 @@ export default {
   computed: {
     tagsDisplayed: function () {
       let tags = [...this.post.tags]
-      if (tags.length > 5) {
-        tags = tags.slice(0, 5)
-        tags.push({ name: '...' })
+      if (tags) {
+        if (tags.length > 5) {
+          tags = tags.slice(0, 5)
+          tags.push({ name: '...' })
+        }
       }
       return tags
     },
     descriptionDisplayed: function () {
       let description = this.post.custom_excerpt
-      if (description.length > 120) {
-        description = description.substr(0, 170) + '...'
+      if (description) {
+        if (description.length > 120) {
+          description = description.substr(0, 170) + '...'
+        }
       }
       return description
     },
