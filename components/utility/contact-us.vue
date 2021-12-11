@@ -97,15 +97,17 @@ export default {
     },
   },
   methods: {
-    validate() {
+    async validate() {
       try {
         if (this.$refs.form.validate()) {
-          // this.loading = true
-          // await this.$mail.send({
-          //   from: 'kodyvansloten@hotmail.com',
-          //   subject: 'Contact form message',
-          //   text: this.name + ' ' + this.email + ' ' + this.message,
-          // })
+          this.loading = true
+          console.log('sent')
+          await this.$mail.send({
+            from: 'kodyvansloten@hotmail.com',
+            subject: 'Contact form message',
+            text: this.name + ' ' + this.email + ' ' + this.message,
+          })
+          console.log('sent again')
           this.loading = false
           // this.dialog = !this.dialog
           this.alert = true
