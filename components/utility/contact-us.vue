@@ -20,7 +20,6 @@
             lazy-validation
           >
             <v-text-field
-              disabled
               v-model="name"
               :rules="nameRules"
               label="Name"
@@ -29,7 +28,6 @@
             ></v-text-field>
 
             <v-text-field
-              disabled
               v-model="email"
               :rules="emailRules"
               label="E-mail"
@@ -39,12 +37,7 @@
 
             <v-textarea v-model="message" label="How can we connect?" no-resize>
             </v-textarea>
-            <v-btn
-              disabled
-              color="orange white--text"
-              class="mr-4"
-              @click="validate"
-            >
+            <v-btn color="orange white--text" class="mr-4" @click="validate">
               Send
             </v-btn>
             <v-progress-circular
