@@ -5,6 +5,12 @@
     </h1>
     <div class="article__date">Posted {{ formattedDate }}</div>
     <div class="article__date">
+      Name:
+      <a :href="post.codeinjection_head" target="blank">{{
+        post.codeinjection_foot
+      }}</a>
+    </div>
+    <div class="article__date">
       Location:
       <a :href="post.codeinjection_head" target="blank">{{
         post.codeinjection_head
@@ -30,6 +36,13 @@
       :pixels-w="'auto'"
     ></BaseImage>
     <!-- <v-img class="article__feature-image" :src="post.feature_image"></v-img> -->
+    <div class="article__author">
+      <img
+        :src="post.authors[0].profile_image"
+        class="article__author__image"
+      />
+      <div class="article__author__name">{{ post.authors[0].name }}</div>
+    </div>
     <main>
       <div class="article__body">
         <div class="article__content">
@@ -129,6 +142,22 @@ export default {
     display: block;
     text-align: center;
     font-weight: 600;
+  }
+  &__author {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    &__image {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    &__name {
+      margin-left: 10px;
+      color: rgb(105, 39, 0);
+      font-weight: 500;
+    }
   }
   &__link {
     text-decoration: none;

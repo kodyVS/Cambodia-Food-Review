@@ -52,6 +52,7 @@ export async function getSinglePost(postSlug) {
   return await api.posts
     .read({
       slug: postSlug,
+      include: 'authors',
     })
     .catch((err) => {
       console.log(err)
