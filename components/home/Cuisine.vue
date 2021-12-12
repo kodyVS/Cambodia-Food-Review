@@ -31,6 +31,13 @@ export default {
         },
         {
           image:
+            'https://res-3.cloudinary.com/www-cambodiafoodreviews-com/image/upload/w_auto,h_400/q_auto/v1/blog-images/china.jpg',
+          title: 'Chinese',
+          link: '/search/Chinese',
+          position: '',
+        },
+        {
+          image:
             'https://res.cloudinary.com/www-cambodiafoodreviews-com/image/upload/v1630559205/Cambodia%20food%20review/Cuisines/Vietnam_sgryuw.jpg',
           title: 'Vietnamese',
           link: '/search/Vietnamese',
@@ -41,13 +48,6 @@ export default {
             'https://res.cloudinary.com/www-cambodiafoodreviews-com/image/upload/v1630559206/Cambodia%20food%20review/Cuisines/Korean_bsdu1s.jpg',
           title: 'Korean',
           link: '/search/Korean',
-          position: '',
-        },
-        {
-          image:
-            'https://res.cloudinary.com/www-cambodiafoodreviews-com/image/upload/v1631688962/Cambodia%20food%20review/Cuisines/Japan_jgu4d2.jpg',
-          title: 'Japanese',
-          link: '/search/Japanese',
           position: '',
         },
         {
