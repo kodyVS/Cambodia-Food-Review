@@ -105,14 +105,6 @@ export default {
     formattedDate() {
       return this.$moment(this.post.updated_at).format('dddd, MMMM Do YYYY')
     },
-    locationLink() {
-      if (this.post.codeinjection_head) {
-        const location = encodeURIComponent(this.post.codeinjection_head.trim())
-        return `https://www.google.com/maps/search/?api=1&query=${location}`
-      } else {
-        return '#'
-      }
-    },
   },
 }
 </script>
