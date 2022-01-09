@@ -35,10 +35,28 @@
               required
             ></v-text-field>
 
-            <v-textarea v-model="message" label="How can we connect?" no-resize>
+            <v-textarea
+              v-if="dialogType === 'contact'"
+              v-model="message"
+              label="How can we connect?"
+              no-resize
+            >
             </v-textarea>
-            <v-btn color="orange white--text" class="mr-4" @click="validate">
+            <v-btn
+              v-if="dialogType === 'contact'"
+              color="orange white--text"
+              class="mr-4"
+              @click="validate"
+            >
               Send
+            </v-btn>
+            <v-btn
+              v-if="dialogType === 'subscribe'"
+              color="orange white--text"
+              class="mr-4"
+              @click="validate"
+            >
+              Subscribe
             </v-btn>
             <v-progress-circular
               v-if="loading"
@@ -50,13 +68,20 @@
         <v-col cols="12" md="6" order="1" order-md="3">
           <v-row align="center" justify="center">
             <v-col cols="12"></v-col>
-            <h2 class="contact-us__text">
+            <h2 class="contact-us__text" v-if="dialogType === 'contact'">
               <span class="start">Looking to connect? </span><br />Planning a
               trip and want some advice?
               <br />
 
               Want us to come review your restaurant? <br />Send us and email or
               reach us on our social media
+            </h2>
+            <h2 class="contact-us__text" v-if="dialogType === 'subscribe'">
+              <span class="start-subscribe"
+                >Enter your email to recieve our newsletter</span
+              >
+              <br />
+              or Follow us on facebook
             </h2>
             <a
               href="https://www.facebook.com/CambodiaFoodReview"
@@ -74,7 +99,7 @@
 </template>
 <script>
 export default {
-  props: ['model'],
+  props: ['model', 'dialogType'],
   data() {
     return {
       dialog: false,
@@ -158,6 +183,9 @@ export default {
     .start {
       font-size: 4rem;
       margin-bottom: 1rem;
+    }
+    .start-subscribe {
+      font-size: 2.5rem;
     }
     text-align: center;
   }

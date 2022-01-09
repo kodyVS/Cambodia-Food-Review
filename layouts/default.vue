@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <ContactUs :model="dialog"></ContactUs>
+    <ContactUs :model="dialog" :dialogType="dialogType"></ContactUs>
     <v-navigation-drawer
       v-model="drawer"
       disable-resize-watcher
@@ -287,7 +287,7 @@
             rounded
             v-bind="size"
             class="white1--text nav__contact-us"
-            @click="dialog = !dialog"
+            @click="subscribe('contact')"
             >Contact us!</v-btn
           >
         </v-col>
@@ -306,6 +306,15 @@
         <Nuxt />
       </v-container>
     </v-main>
+    <div class="subscribe-button">
+      <button
+        small
+        class="subscribe-button__button"
+        @click="subscribe('subscribe')"
+      >
+        Subscribe
+      </button>
+    </div>
   </v-app>
 </template>
 
@@ -324,6 +333,7 @@ export default {
   data() {
     return {
       dialog: false,
+      dialogType: 'contact',
       search: '',
       select: '',
       drawer: false,
@@ -361,6 +371,12 @@ export default {
       return size ? { [size]: true } : {}
     },
   },
+  methods: {
+    subscribe(dialogType) {
+      this.dialogType = dialogType
+      this.dialog = !this.dialog
+    },
+  },
 }
 </script>
 <style lang="scss">
@@ -383,6 +399,17 @@ export default {
   &__content {
     align-items: center;
     flex-wrap: nowrap;
+  }
+}
+.subscribe-button {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  &__button {
+    background-color: #f46f30;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
   }
 }
 .drawer {
